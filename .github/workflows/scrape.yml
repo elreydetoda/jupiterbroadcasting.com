@@ -20,7 +20,7 @@ jobs:
     - name: 'Checkout show-scraper'
       uses: actions/checkout@v3
       with:
-        repository: JupiterBroadcasting/show-scraper
+        repository: elreydetoda/show-scraper
         ref: main
         path: ./show-scraper
 
