@@ -31,11 +31,11 @@ jobs:
           pip install pipenv && pipenv sync --bare
 
       - name: Ensure browsers are installed
-        run: python -m playwright install --with-deps
+        run: pipenv run playwright install --with-deps
 
       - name: Run your tests
         working-directory: ./test
-        run: pytest --base-url http://localhost:1313 -v --junitxml report.xml e2e/*
+        run: pipenv run pytest --base-url http://localhost:1313 -v --junitxml report.xml
 
       - name: Save screenshots
         uses: actions/upload-artifact@v2
