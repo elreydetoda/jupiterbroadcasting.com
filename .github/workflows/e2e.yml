@@ -41,6 +41,7 @@ jobs:
           pip install pipenv && pipenv sync --bare
 
       - name: Ensure browsers are installed
+        working-directory: ./test
         run: pipenv run playwright install --with-deps
 
       - name: Run your tests
