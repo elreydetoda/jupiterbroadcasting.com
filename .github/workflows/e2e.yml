@@ -12,7 +12,7 @@ jobs:
       - name: run hugo build
         uses: docker://registry.gitlab.com/pages/hugo/hugo_extended:0.101.0
         with:
-          args: -b http://localhost:1313
+          args: hugo -b http://localhost:1313
 
       - name: run server
         run: |
