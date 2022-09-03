@@ -33,7 +33,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           image: jb_web_container
-          tags: prod-latest prod-${{ steps.env_setup.outputs.date_fmt }}
+          tags: prod-latest prod-${{ needs.env_setup.outputs.date_fmt }}
           containerfiles: |
             ./Dockerfile
 
@@ -43,7 +43,7 @@ jobs:
         with:
           image: ${{ steps.build-image.outputs.image }}
           tags: ${{ steps.build-image.outputs.tags }}
-          registry: quay.io/${{ steps.env_setup.outputs.registry_user }}
+          registry: quay.io/${{ needs.env_setup.outputs.registry_user }}
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
