@@ -15,19 +15,27 @@ jobs:
   env_setup:
     runs-on: ubuntu-latest
     outputs:
-      date_output: ${{ steps.date.outputs.date_fmt }}
-      registry_user: ${{ steps.registry.outputs.username }}
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
     steps:
-      - id: date
-        run: echo "::set-output name=date_fmt::$(date -Isec | tr ':' '_')"
-      - id: registry_user
-        run: echo "::set-output name=username::$(cut -d '+' -f 1 <<< ${{ secrets.REGISTRY_USER }})"
+      - id: step1
+        run: echo "::set-output name=test::hello"
+      - id: step2
+        run: echo "::set-output name=test::world"
+    # outputs:
+    #   date_output: ${{ steps.date.outputs.date_fmt }}
+    #   registry_user: ${{ steps.registry.outputs.username }}
+    # steps:
+    #   - id: date
+    #     run: echo "::set-output name=date_fmt::$(date -Isec | tr ':' '_')"
+    #   - id: registry_user
+    #     run: echo "::set-output name=username::$(cut -d '+' -f 1 <<< ${{ secrets.REGISTRY_USER }})"
 
   prod:
     runs-on: ubuntu-latest
     needs: env_setup
     steps:
-      - run: echo ${{ needs.env_setup.outputs.date_fmt }}
+      - run: echo ${{ needs.env_setup.outputs.output1 }} ${{ needs.env_setup.outputs.output2 }}
       # - uses: actions/checkout@v2
       # - name: Build Image
       #   id: build-image
