@@ -19,9 +19,9 @@ jobs:
       registry_user: ${{ steps.registry.outputs.username }}
     steps:
       - id: date
-        run: echo "::set-ouput name=date_fmt::$(date -Isec | tr ':' '_')"
+        run: echo "::set-output name=date_fmt::$(date -Isec | tr ':' '_')"
       - id: registry_user
-        run: echo "::set-ouput name=username::$(cut -d '+' -f 1 <<< ${{ secrets.REGISTRY_USER }})"
+        run: echo "::set-output name=username::$(cut -d '+' -f 1 <<< ${{ secrets.REGISTRY_USER }})"
 
   prod:
     runs-on: ubuntu-latest
