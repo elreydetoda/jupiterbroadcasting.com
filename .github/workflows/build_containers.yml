@@ -32,8 +32,8 @@ jobs:
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: my-app
-          tags: prod-latest ${{ steps.env_setup.outputs.date_fmt }}
+          image: jb_web_container
+          tags: prod-latest prod-${{ steps.env_setup.outputs.date_fmt }}
           containerfiles: |
             ./Dockerfile
 
