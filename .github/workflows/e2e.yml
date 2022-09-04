@@ -38,6 +38,10 @@ jobs:
         #   because they're on the same network bridge, more info here:
         #   https://docs.github.com/en/actions/using-containerized-services/about-service-containers#running-jobs-in-a-container
 
+      - name: change file ownership
+        run: |
+          chown -R "$(id -u)":"$(id -g)" "${GITHUB_WORKSPACE}/."
+
       - name: Save screenshots
         uses: actions/upload-artifact@v2
         with:
