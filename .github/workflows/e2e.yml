@@ -24,8 +24,6 @@ jobs:
     services:
       jb-com:
         image: quay.io/elrey741/jb_web_container:prod-latest
-        ports:
-          - 8080:80/tcp
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -33,8 +31,11 @@ jobs:
       - name: Run your tests
         uses: docker://quay.io/elrey741/jb_web_container:tests-latest
         with:
-          entrypoint: curl
-          args: http://localhost:8080
+          args: --base-url http://jb-com -v --junitxml report.xml
+          # jb-com works as the base domain, because the service (jb-com) is a container
+          #   since we're using a container to run this, then we don't need to expose any ports
+          #   because they're on the same network bridge, more info here:
+          #   https://docs.github.com/en/actions/using-containerized-services/about-service-containers#running-jobs-in-a-container
 
       - name: Save screenshots
         uses: actions/upload-artifact@v2
