@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: run hugo build
-        uses: docker://quay.io/elrey741/prod-latest
+        uses: docker://quay.io/elrey741/jb_web_container:prod-latest
         with:
           args: cp -r /usr/share/nginx/html ./public
 
@@ -36,7 +36,7 @@ jobs:
           python -m http.server 1313 &
 
       - name: Run your tests
-        uses: docker://quay.io/elrey741/tests-latest
+        uses: docker://quay.io/elrey741/jb_web_container:tests-latest
         with:
           args: --base-url http://localhost:1313 -v --junitxml report.xml
 
