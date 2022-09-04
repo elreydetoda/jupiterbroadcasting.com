@@ -26,6 +26,7 @@ jobs:
         image: quay.io/elrey741/jb_web_container:prod-latest
     container:
       image: quay.io/elrey741/jb_web_container:tests-latest
+      options: --user 0
     steps:
       - name: Checkout
         uses: actions/checkout@v2
