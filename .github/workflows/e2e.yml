@@ -25,10 +25,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      # inspired from this:
+      # https://github.com/shrink/actions-docker-extract/blob/23130a485b089b4bb1e3710946034ebc90b00072/src/extract.js
       - name: run hugo build
-        uses: docker://quay.io/elrey741/jb_web_container:prod-latest
-        with:
-          args: cp -r /usr/share/nginx/html ./public
+        run: docker cp "$(docker create quay.io/elrey741/jb_web_container:prod-latest)":/usr/share/nginx/html ./public
 
       - name: run server
         working-directory: ./public
