@@ -34,7 +34,7 @@ jobs:
         uses: docker://quay.io/elrey741/jb_web_container:tests-latest
         with:
           entrypoint: curl
-          args: http://jb-com:8080
+          args: http://localhost:8080
 
       - name: Save screenshots
         uses: actions/upload-artifact@v2
