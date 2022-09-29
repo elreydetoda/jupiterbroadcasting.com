@@ -43,7 +43,6 @@ def test_dropdowns(page: Page, expected_dropdown_items):
         expect(element).to_contain_text(dropdown_item['title'])
     
 
-
 def test_nav(page: Page, expected_dropdowns, expect_nav_items):
 
     page.goto("/")
