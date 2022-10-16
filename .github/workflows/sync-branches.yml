@@ -1,0 +1,18 @@
+# found via this blog post: https://www.jessesquires.com/blog/2022/03/26/gh-action-merge-release-to-main/
+name: Sync main and develop
+on:
+  workflow_dispatch:   # Allows you to run this workflow manually from the Actions tab
+  push:
+    branches:
+    - main
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "develop"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
